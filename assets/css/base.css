@@ -1,0 +1,133 @@
+/* base.css
+   palette istituzionale (rosso scuro Univaq + grigi).
+   layout asimmetrico, niente border-radius eccessivi, niente shadow gratuite.
+   l'idea è il look di un sito di amministrazione universitaria. */
+
+:root {
+    --c-burgundy: #8b1e1e;
+    --c-burgundy-dark: #6b1414;
+    --c-text: #1a1a1a;
+    --c-muted: #555;
+    --c-bg: #f4f2ed;
+    --c-panel: #fff;
+    --c-border: #d8d3ca;
+    --c-rule: #b9b2a7;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--c-text);
+    background: var(--c-bg);
+}
+
+a { color: var(--c-burgundy); }
+a:hover { color: var(--c-burgundy-dark); }
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+/* barra in alto nera */
+.topbar {
+    background: #2c2724;
+    color: #cfc7bb;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    padding: 4px 0;
+}
+.topbar .container { display: flex; justify-content: space-between; }
+.topbar a { color: #f0e6d2; text-decoration: none; }
+.topbar a:hover { text-decoration: underline; }
+
+/* barra sotto */
+.topbar .container { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.topbar-right { display: inline-flex; align-items: center; gap: 14px; }
+.lang-toggle { display: inline-flex; gap: 4px; font-size: 0.78rem; letter-spacing: 0.04em; font-weight: 600; }
+.lang-toggle span.on { background: var(--c-burgundy); color: #fff; padding: 1px 6px; }
+.lang-toggle a { background: transparent; color: #fff; padding: 1px 6px; border: 1px solid transparent; text-decoration: none; opacity: 0.7; }
+.lang-toggle a:hover { opacity: 1; border-color: rgba(255,255,255,0.4); }
+
+/* barra rossa con la scritta */
+.site-header {
+    background: var(--c-burgundy);
+    color: #fff;
+    border-bottom: 4px solid #4a0d0d;
+}
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+.brand {
+    color: #fff;
+    text-decoration: none;
+    font-family: Georgia, serif;
+    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.brand .brand-logo {
+    height: 56px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+}
+.brand .brand-text { display: inline-flex; flex-direction: column; }
+.brand .brand-line1 { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+.brand .brand-line2 { font-size: 1.55rem; font-weight: 700; }
+
+
+.site-nav {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.92rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 14px;
+}
+.site-nav .nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 4px 6px;
+    border-bottom: 2px solid transparent;
+}
+.site-nav .nav-link:hover { border-bottom-color: #fff; }
+.site-nav .nav-link.active { border-bottom-color: #fff; font-weight: 700; }
+.site-nav .user-name { font-weight: 600; padding: 0 4px; opacity: 0.95; }
+
+/* responsive: header passa a colonna su mobile */
+@media (max-width: 720px) {
+    .site-header .container { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .site-nav { width: 100%; justify-content: flex-start; }
+    .topbar .container { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+/* pie di pagina */
+.site-footer {
+    background: #2c2724;
+    color: #b9b2a7;
+    padding: 18px 0;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+.site-footer .container { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+.site-footer h4 { margin: 0 0 4px; color: #f0e6d2; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.site-footer a { color: #cfc7bb; text-decoration: underline; }
+.site-footer p { margin: 2px 0; }
+@media (max-width: 720px) { .site-footer .container { grid-template-columns: 1fr; } }
+
+/* tipografia titoli: serif */
+h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.85rem; margin: 0 0 12px; line-height: 1.2; }
+h2 { font-family: Georgia, "Times New Roman", serif; }
+h3 { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
