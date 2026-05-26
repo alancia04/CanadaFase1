@@ -32,7 +32,11 @@ function flash(): string {
 function format_date_it(?string $sqlDate): string {
     if (!$sqlDate) return '';
     $ts = strtotime($sqlDate);
-    return $ts ? date('d/m/Y', $ts) : '';
+    if (!$ts) return '';
+    if (current_lang() === 'en') {
+        return date('M j, Y', $ts);
+    }
+    return date('d/m/Y', $ts);
 }
 
 // data+ora MySQL 

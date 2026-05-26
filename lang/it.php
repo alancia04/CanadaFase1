@@ -1,4 +1,6 @@
 <?php
+// dizionario italiano (default)
+// chiavi puntate per area: header.* nav.* auth.* dashboard.* cert.* ...
 return [
     // brand
     'brand.university'   => "Università degli Studi dell'Aquila",
@@ -25,7 +27,7 @@ return [
     'common.required'    => 'obbligatorio',
     'common.optional'    => 'facoltativo',
 
-    // auth
+    // autenticazione
     'auth.login_title'   => 'Accedi',
     'auth.email'         => 'Email',
     'auth.password'      => 'Password',
@@ -73,7 +75,7 @@ return [
     'profile.updated'            => 'Profilo aggiornato.',
     'profile.name_required'      => 'Nome e cognome sono obbligatori.',
 
-    // password
+    // change password
     'pwd.title'             => 'Modifica password',
     'pwd.current'           => 'Password attuale',
     'pwd.new'               => 'Nuova password',
@@ -143,4 +145,3 @@ return [
     'err.no_perms'           => 'Permesso negato.',
     'err.session_expired'    => 'Sessione scaduta.',
 ];
-

@@ -1,4 +1,5 @@
 <?php
+// english dictionary. mirror of it.php keys; unknown keys fall back to the key string.
 return [
     // brand
     'brand.university'   => 'University of L\'Aquila',
