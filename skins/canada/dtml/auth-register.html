@@ -1,5 +1,70 @@
-<!-- template auth-register - scaffold -->
-<div>
-    
-    <p> auth-register</p>
-</div>
+<section class="auth-box">
+    <h1><[h_register]></h1>
+    <p><[intro]></p>
+
+    <[errors]>
+
+    <form method="post" action="/register.php" class="auth-form">
+        <fieldset>
+            <legend><[legend_account]></legend>
+
+            <div class="form-row">
+                <label for="email"><[l_email]> *</label>
+                <input type="email" id="email" name="email" value="<[email]>" required placeholder="<[email_ph]>">
+                <small><[email_help]></small>
+            </div>
+            <div class="form-row">
+                <label for="password"><[l_password]> * <[pwd_minlen]></label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-row">
+                <label for="password_conf"><[l_password_conf]> *</label>
+                <input type="password" id="password_conf" name="password_conf" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><[legend_personal]></legend>
+
+            <div class="form-row">
+                <label for="first_name"><[l_first_name]> *</label>
+                <input type="text" id="first_name" name="first_name" value="<[first_name]>" required>
+            </div>
+            <div class="form-row">
+                <label for="last_name"><[l_last_name]> *</label>
+                <input type="text" id="last_name" name="last_name" value="<[last_name]>" required>
+            </div>
+            <div class="form-row">
+                <label for="phone"><[l_phone]></label>
+                <input type="text" id="phone" name="phone" value="<[phone]>">
+            </div>
+            <div class="form-row">
+                <label for="birth_date"><[l_birth]></label>
+                <input type="date" id="birth_date" name="birth_date" value="<[birth_date]>">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><[legend_affiliation]></legend>
+
+            <div class="form-row">
+                <label><input type="radio" name="member_type" value="studente"  <[type_studente_checked]>> <[l_student]></label>
+                <label><input type="radio" name="member_type" value="docente"   <[type_docente_checked]>> <[l_faculty]></label>
+                <label><input type="radio" name="member_type" value="personale" <[type_personale_checked]>> <[l_staff]></label>
+            </div>
+
+            <div class="form-row">
+                <label for="matricola"><[l_matricola]></label>
+                <input type="text" id="matricola" name="matricola" value="<[matricola]>"
+                       pattern="[A-Za-z0-9]{4,20}" placeholder="<[matricola_ph]>">
+                <small><[matricola_help]></small>
+            </div>
+        </fieldset>
+
+        <div class="form-row">
+            <button class="btn" type="submit"><[btn_register]></button>
+        </div>
+    </form>
+
+    <p><[already_have]> <a href="/login.php"><[link_login]></a>.</p>
+</section>
