@@ -131,3 +131,137 @@ a:hover { color: var(--c-burgundy-dark); }
 h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.85rem; margin: 0 0 12px; line-height: 1.2; }
 h2 { font-family: Georgia, "Times New Roman", serif; }
 h3 { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+
+
+.panel {
+    background: var(--c-panel);
+    border: 1px solid var(--c-border);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+}
+.panel h2 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+    color: var(--c-burgundy);
+    border-bottom: 2px solid var(--c-burgundy);
+    padding-bottom: 6px;
+    display: inline-block;
+}
+.panel h3 { margin: 14px 0 4px; font-size: 1rem; }
+.panel p { margin: 0 0 10px; }
+
+/*bottoni*/
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    background: var(--c-burgundy);
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid var(--c-burgundy);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn:hover { background: var(--c-burgundy-dark); border-color: var(--c-burgundy-dark); color: #fff; }
+.btn-outline { background: transparent; color: var(--c-burgundy); }
+.btn-outline:hover { background: var(--c-burgundy); color: #fff; }
+.btn-quiet {
+    background: transparent;
+    color: var(--c-muted);
+    border-color: var(--c-rule);
+    padding: 6px 12px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+.btn-quiet:hover { background: #efeae0; color: var(--c-text); border-color: var(--c-rule); }
+
+.flash {
+    background: #fff8d8;
+    border: 1px solid #c0a020;
+    padding: 9px 12px;
+    margin-bottom: 14px;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.92rem;
+}
+.flash-error { background: #fbe5e3; border-color: #c83e3e; color: #6e1414; }
+.flash-error ul { margin: 0; padding-left: 20px; }
+
+/*form*/
+.auth-form { max-width: 580px; }
+.auth-form fieldset {
+    border: 1px solid var(--c-border);
+    padding: 10px 16px 4px;
+    margin: 0 0 16px;
+}
+.auth-form legend {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    color: var(--c-burgundy);
+    padding: 0 6px;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+}
+.form-row { margin-bottom: 12px; }
+.form-row > label {
+    display: block;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 3px;
+    color: #333;
+}
+.form-row > label[type] { display: inline; } /* radio inline */
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="password"],
+.form-row input[type="date"],
+.form-row input[type="datetime-local"],
+.form-row input[type="number"],
+.form-row input[type="search"],
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid #c0b8a8;
+    background: #fff;
+    font: inherit;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.93rem;
+}
+
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    outline: none;
+    border-color: var(--c-burgundy);
+    box-shadow: inset 0 0 0 1px var(--c-burgundy);
+}
+.form-row small {
+    display: block;
+    color: var(--c-muted);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.82rem;
+    margin-top: 3px;
+}
+.form-row .radio-group label {
+    display: inline-block;
+    margin-right: 16px;
+    font-weight: 500;
+    font-size: 0.93rem;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+.form-row .radio-group input[type="radio"] { margin-right: 4px; }
+
+/*breadcrumb delle pagine admin*/
+.breadcrumb {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.85rem;
+    color: var(--c-muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--c-border);
+}
+.breadcrumb a { color: var(--c-burgundy); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: var(--c-rule); margin: 0 6px; }
+.breadcrumb .current { font-weight: 600; color: var(--c-text); }
