@@ -1,5 +1,100 @@
-<!-- template home-logged - scaffold -->
-<div>
-    <!-- da fare: layout e segnaposto <[...]> -->
-    <p>Da fare: home-logged</p>
-</div>
+<!-- HOME PER UTENTE LOGGATO: hero ridotto, sezione prenota, prossime prenotazioni, strutture, info -->
+<section class="hero hero-compact" style="background-image:url('/assets/img/campo-polivalente.jpg')">
+    <div class="hero-overlay">
+        <p class="hero-kicker"><[hero_kicker]></p>
+        <h1 class="hero-title"><[hero_title]></h1>
+        <p class="hero-sub"><[hero_sub]></p>
+        <p class="hero-cta">
+            <a class="btn btn-primary" href="/courses.php"><[btn_book]></a>
+            <a class="btn btn-ghost" href="/my-bookings.php"><[btn_my_bookings]></a>
+        </p>
+    </div>
+</section>
+
+<[cert_banner]>
+
+<section class="book-now">
+    <h2 class="section-h2"><[h_book]></h2>
+    <p class="section-sub"><[book_sub]></p>
+    <div class="book-grid">
+        <a class="book-card" href="/course-detail.php?slug=sala-pesi-libero">
+            <div class="book-img" style="background-image:url('/assets/img/sala-pesi.jpg')"></div>
+            <div class="book-body">
+                <h3><[b1_title]></h3>
+                <p><[b1_text]></p>
+                <p class="book-cta"><[b1_cta]> &raquo;</p>
+            </div>
+        </a>
+        <a class="book-card" href="/course-detail.php?slug=campo-basket-libera">
+            <div class="book-img" style="background-image:url('/assets/img/campo-polivalente.jpg')"></div>
+            <div class="book-body">
+                <h3><[b2_title]></h3>
+                <p><[b2_text]></p>
+                <p class="book-cta"><[b2_cta]> &raquo;</p>
+            </div>
+        </a>
+        <a class="book-card" href="/course-detail.php?slug=calcetto-indoor-libera">
+            <div class="book-img" style="background-image:url('/assets/img/campo-polivalente.jpg')"></div>
+            <div class="book-body">
+                <h3><[b3_title]></h3>
+                <p><[b3_text]></p>
+                <p class="book-cta"><[b3_cta]> &raquo;</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="upcoming-home">
+    <h2 class="section-h2"><[h_upcoming]></h2>
+    <[upcoming_block]>
+</section>
+
+<section class="structures">
+    <h2 class="section-h2"><[h_structures]></h2>
+    <p class="section-sub"><[structures_sub]></p>
+    <div class="structures-grid">
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/esterno-bandiere.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s1_title]></h3>
+                <p><[s1_text]></p>
+            </div>
+        </article>
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/esterno-portico.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s2_title]></h3>
+                <p><[s2_text]></p>
+            </div>
+        </article>
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/sala-pesi.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s3_title]></h3>
+                <p><[s3_text]></p>
+            </div>
+        </article>
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/sala-studio.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s4_title]></h3>
+                <p><[s4_text]></p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="info-bar">
+    <div class="info-col">
+        <h3><[h_hours]></h3>
+        <table class="info">
+            <tr><th><[l_weekdays]></th><td>09.00 - 21.30</td></tr>
+            <tr><th><[l_saturday]></th><td>09.00 - 18.00</td></tr>
+            <tr><th><[l_sunday]></th><td><span class="muted"><[l_closed]></span></td></tr>
+        </table>
+    </div>
+    <div class="info-col">
+        <h3><[h_news]></h3>
+        <[announcements]>
+    </div>
+</section>

@@ -1,5 +1,119 @@
-<!-- template home - scaffold -->
-<div>
-    <!-- da fare: layout e segnaposto <[...]> -->
-    <p>da fare: home</p>
-</div>
+<!-- HERO grande con foto del campo -->
+<section class="hero" style="background-image:url('/assets/img/campo-polivalente.jpg')">
+    <div class="hero-overlay">
+        <p class="hero-kicker"><[hero_kicker]></p>
+        <h1 class="hero-title"><[hero_title]></h1>
+        <p class="hero-sub"><[hero_sub]></p>
+        <p class="hero-cta">
+            <a class="btn btn-primary" href="/register.php"><[btn_signup]></a>
+            <a class="btn btn-ghost" href="/courses.php"><[btn_calendar]></a>
+        </p>
+        <p class="hero-badge"><[hero_badge]></p>
+    </div>
+</section>
+
+<!-- STRUTTURE: 4 spazi con foto reali -->
+<section class="structures">
+    <h2 class="section-h2"><[h_structures]></h2>
+    <p class="section-sub"><[structures_sub]></p>
+
+    <div class="structures-grid">
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/esterno-bandiere.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s1_title]></h3>
+                <p><[s1_text]></p>
+                <p class="muted small"><[s1_meta]></p>
+            </div>
+        </article>
+
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/esterno-portico.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s2_title]></h3>
+                <p><[s2_text]></p>
+                <p class="muted small"><[s2_meta]></p>
+            </div>
+        </article>
+
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/sala-pesi.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s3_title]></h3>
+                <p><[s3_text]></p>
+                <p class="muted small"><[s3_meta]></p>
+            </div>
+        </article>
+
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/campo-polivalente.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s5_title]></h3>
+                <p><[s5_text]></p>
+                <p class="muted small"><[s5_meta]></p>
+            </div>
+        </article>
+
+        <article class="struct-card">
+            <div class="struct-img" style="background-image:url('/assets/img/sala-studio.jpg')"></div>
+            <div class="struct-body">
+                <h3><[s4_title]></h3>
+                <p><[s4_text]></p>
+                <p class="muted small"><[s4_meta]></p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- COME FUNZIONA in 4 step -->
+<section class="how-works">
+    <h2 class="section-h2"><[h_how]></h2>
+    <ol class="how-steps">
+        <li>
+            <span class="step-num">1</span>
+            <h4><[how1_t]></h4>
+            <p><[how1_p]></p>
+        </li>
+        <li>
+            <span class="step-num">2</span>
+            <h4><[how2_t]></h4>
+            <p><[how2_p]></p>
+        </li>
+        <li>
+            <span class="step-num">3</span>
+            <h4><[how3_t]></h4>
+            <p><[how3_p]></p>
+        </li>
+        <li>
+            <span class="step-num">4</span>
+            <h4><[how4_t]></h4>
+            <p><[how4_p]></p>
+        </li>
+    </ol>
+    <p style="text-align:center;margin-top:18px"><a class="btn btn-primary" href="/register.php"><[btn_signup2]></a></p>
+</section>
+
+<!-- INFO BAR: orari + chi puo iscriversi + comunicazioni -->
+<section class="info-bar">
+    <div class="info-col">
+        <h3><[h_hours]></h3>
+        <table class="info">
+            <tr><th><[l_weekdays]></th><td>09.00 - 21.30</td></tr>
+            <tr><th><[l_saturday]></th><td>09.00 - 18.00</td></tr>
+            <tr><th><[l_sunday]></th><td><span class="muted"><[l_closed]></span></td></tr>
+        </table>
+    </div>
+    <div class="info-col">
+        <h3><[h_who]></h3>
+        <ul class="small">
+            <li><[who_li1]></li>
+            <li><[who_li2]></li>
+            <li><[who_li3]></li>
+        </ul>
+        <p class="small muted"><[who_note]></p>
+    </div>
+    <div class="info-col">
+        <h3><[h_news]></h3>
+        <[announcements]>
+    </div>
+</section>
