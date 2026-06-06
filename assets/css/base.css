@@ -1,7 +1,4 @@
-/* base.css
-   palette istituzionale (rosso scuro Univaq + grigi).
-   layout asimmetrico, niente border-radius eccessivi, niente shadow gratuite.
-   l'idea è il look di un sito di amministrazione universitaria. */
+/* base.css */
 
 :root {
     --c-burgundy: #8b1e1e;

@@ -1,9 +1,5 @@
 <?php
-// homepage: due varianti.
-//   - anonimo  -> home pubblica con hero "iscriviti" + 4 strutture + come funziona + info
-//   - admin    -> redirect al backoffice (loro non hanno bisogno della home utente)
-//   - loggato (studente/docente/personale) -> home "hub" con prenotazioni, cert banner,
-//     prossime prenotazioni, strutture, info.
+// homepage con accesso admin e utente
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/session.php';
@@ -11,13 +7,11 @@ require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/helpers.php';
 
-// admin/staff vanno al backoffice, hanno una landing dedicata
 if (is_logged_in()) {
     $u = current_user();
     if (user_has_service((int)$u['id'], SVC_VIEW_DASHBOARD)) {
         redirect('/admin/index.php');
     }
-    // altrimenti procede con la home "logged" sotto
 }
 
 $en       = current_lang() === 'en';
@@ -26,7 +20,7 @@ $pdo      = null;
 
 try { $pdo = db(); } catch (Throwable $e) { /* DB non configurato, mostro placeholder */ }
 
-// blocco annunci (comune ad anonimi e loggati)
+// blocco annunci
 
 $annHtml = '';
 if ($pdo) {
@@ -58,7 +52,6 @@ if ($isLogged) {
     $uid = (int)$u['id'];
     $name = trim($u['name'] . ' ' . $u['surname']);
 
-    // cert banner: se member, mostro lo stato del cert in cima
     $stmt = $pdo->prepare("SELECT id FROM members WHERE user_id = :uid LIMIT 1");
     $stmt->execute([':uid' => $uid]);
     $memberId = (int)$stmt->fetchColumn();
