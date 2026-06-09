@@ -32,9 +32,9 @@ if (!$courses) {
     $p = $en ? 'The calendar is being published. Check back soon.' : 'Il calendario è in fase di pubblicazione. Torna presto.';
     $body_html = '<article class="panel"><h2>' . $h . '</h2><p class="muted">' . $p . '</p></article>';
 } else {
-    $thActivity = $en ? 'activity' : 'attività';
+    $thActivity = t('courses.col.activity');
     $thType     = $en ? 'level'    : 'tipo';
-    $thDuration = $en ? 'duration' : 'durata';
+    $thDuration = t('courses.col.duration');
     $thSlots    = $en ? 'upcoming slots' : 'slot in programma';
     $programmed = $en ? ' upcoming' : ' in programma';
     $none       = $en ? 'none' : 'nessuna';
