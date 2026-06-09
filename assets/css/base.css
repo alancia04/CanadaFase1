@@ -617,3 +617,15 @@ ol.steps li { margin-bottom: 6px; }
 .review-gate-cta { margin: 0; }
 .review-gate-cta .btn + .btn { margin-left: 6px; }
 
+/*badge dello stato dei corsi*/
+.tag {
+    display: inline-block;
+    background: #efeae0;
+    border: 1px solid var(--c-rule);
+    padding: 1px 6px;
+    font-size: 0.78rem;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-muted);
+}

@@ -1,87 +1,131 @@
 <?php
-//elenco dei corsi raggruppati per categoria
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/session.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/helpers.php';
 
-require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/session.php';
-require_once __DIR__ . '/includes/db.php';
-require_once __DIR__ . '/includes/helpers.php';
-
+require_service(SVC_MANAGE_COURSES);
 $pdo = db();
-$en  = current_lang() === 'en';
+$action = $_GET['action'] ?? 'list';
+$errors = [];
+$form = [
+    'category_id' => '', 'title' => '', 'description' => '',
+    'level' => 'base', 'duration_minutes' => '60', 'is_published' => '1',
+];
 
-$courses = $pdo->query("
-    SELECT c.id, c.title, c.slug, c.description, c.level, c.duration_minutes,
-           cat.name AS cat_name, cat.slug AS cat_slug,
-           (SELECT COUNT(*) FROM course_sessions cs
-             WHERE cs.course_id = c.id AND cs.status='scheduled' AND cs.starts_at >= NOW()) AS upcoming_sessions
+if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach (['title','description','level','duration_minutes','is_published'] as $k) {
+        $form[$k] = trim($_POST[$k] ?? '');
+    }
+    $form['category_id'] = (int)($_POST['category_id'] ?? 0);
+
+    if ($form['title'] === '')          $errors[] = 'Titolo obbligatorio.';
+    if ($form['category_id'] <= 0)      $errors[] = 'Categoria obbligatoria.';
+    if (!in_array($form['level'], ['base','intermedio','avanzato'], true)) $errors[] = 'Livello non valido.';
+    $dur = (int)$form['duration_minutes'];
+    if ($dur < 15 || $dur > 240)        $errors[] = 'Durata fuori range (15-240 min).';
+
+    if (!$errors) {
+        try {
+            // instructor_id resta NULL: nel dominio Canada le attività sono libere (no istruttore)
+            $stmt = $pdo->prepare("
+                INSERT INTO courses (category_id, instructor_id, title, slug, description, level, duration_minutes, is_published)
+                VALUES (:cat, NULL, :t, :s, :d, :l, :dur, :pub)
+            ");
+            $stmt->execute([
+                ':cat'  => $form['category_id'],
+                ':t'    => $form['title'],
+                ':s'    => slugify($form['title']),
+                ':d'    => $form['description'] ?: null,
+                ':l'    => $form['level'],
+                ':dur'  => $dur,
+                ':pub'  => $form['is_published'] ? 1 : 0,
+            ]);
+            flash_set('Corso creato.');
+            redirect('/admin/courses.php');
+        } catch (PDOException $ex) {
+            $errors[] = $ex->getCode() === '23000' ? 'Slug duplicato.' : 'Errore database.';
+        }
+    }
+}
+if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)($_POST['id'] ?? 0);
+    if ($id > 0) {
+        $stmt = $pdo->prepare("DELETE FROM courses WHERE id=:id");
+        $stmt->execute([':id' => $id]);
+        flash_set('Corso eliminato.');
+    }
+    redirect('/admin/courses.php');
+}
+if ($action === 'toggle' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int)($_POST['id'] ?? 0);
+    if ($id > 0) {
+        $stmt = $pdo->prepare("UPDATE courses SET is_published = 1 - is_published WHERE id=:id");
+        $stmt->execute([':id' => $id]);
+        flash_set('Stato corso aggiornato.');
+    }
+    redirect('/admin/courses.php');
+}
+
+$rows = $pdo->query("
+    SELECT c.id, c.title, c.level, c.duration_minutes, c.is_published,
+           cat.name AS category_name
     FROM courses c
     JOIN course_categories cat ON cat.id = c.category_id
-    WHERE c.is_published = 1
     ORDER BY cat.name, c.title
 ")->fetchAll();
 
-//li raggruppo per categoria
-$byCat = [];
-foreach ($courses as $c) {
-    $byCat[$c['cat_name']][] = $c;
+$cats = $pdo->query("SELECT id, name FROM course_categories ORDER BY name")->fetchAll();
+
+$rowsHtml = '';
+foreach ($rows as $r) {
+    $pubTag = $r['is_published'] ? '<span class="tag" style="background:#e8f3e1;color:#355d22">pubblicato</span>' : '<span class="tag">bozza</span>';
+    $rowsHtml .= '<tr>';
+    $rowsHtml .= '<td>' . e($r['title']) . '</td>';
+    $rowsHtml .= '<td>' . e($r['category_name']) . '</td>';
+    $rowsHtml .= '<td>' . e($r['level']) . '</td>';
+    $rowsHtml .= '<td>' . (int)$r['duration_minutes'] . ' min</td>';
+    $rowsHtml .= '<td>' . $pubTag . '</td>';
+    $rowsHtml .= '<td>';
+    $rowsHtml .= '<form method="post" action="/admin/courses.php?action=toggle" style="display:inline">';
+    $rowsHtml .= '<input type="hidden" name="id" value="' . (int)$r['id'] . '">';
+    $rowsHtml .= '<button type="submit" class="btn btn-quiet">' . ($r['is_published'] ? 'archivia' : 'pubblica') . '</button></form> ';
+    $rowsHtml .= '<form method="post" action="/admin/courses.php?action=delete" style="display:inline" onsubmit="return confirm(\'Eliminare il corso?\')">';
+    $rowsHtml .= '<input type="hidden" name="id" value="' . (int)$r['id'] . '">';
+    $rowsHtml .= '<button type="submit" class="btn btn-quiet">elimina</button></form>';
+    $rowsHtml .= '</td></tr>';
 }
 
-$body_html = '';
-if (!$courses) {
-    $h = $en ? 'No published activities' : 'Nessun corso pubblicato';
-    $p = $en ? 'The calendar is being published. Check back soon.' : 'Il calendario è in fase di pubblicazione. Torna presto.';
-    $body_html = '<article class="panel"><h2>' . $h . '</h2><p class="muted">' . $p . '</p></article>';
-} else {
-    $thActivity = $en ? 'activity' : 'attività';
-    $thType     = $en ? 'level'    : 'tipo';
-    $thDuration = $en ? 'duration' : 'durata';
-    $thSlots    = $en ? 'upcoming slots' : 'slot in programma';
-    $programmed = $en ? ' upcoming' : ' in programma';
-    $none       = $en ? 'none' : 'nessuna';
-    $detail     = $en ? 'details &raquo;' : 'scheda &raquo;';
+$catOpts = '';
+foreach ($cats as $c) $catOpts .= '<option value="' . (int)$c['id'] . '">' . e($c['name']) . '</option>';
 
-    foreach ($byCat as $catName => $list) {
-        $body_html .= '<article class="panel">';
-        $body_html .= '<h2>' . e($catName) . '</h2>';
-        $body_html .= '<table class="info"><thead><tr><th>' . $thActivity . '</th><th>' . $thType . '</th><th>' . $thDuration . '</th><th>' . $thSlots . '</th><th></th></tr></thead><tbody>';
-        foreach ($list as $c) {
-            $sessTag = (int)$c['upcoming_sessions'] > 0
-                ? '<strong>' . (int)$c['upcoming_sessions'] . '</strong>' . $programmed
-                : '<span class="muted">' . $none . '</span>';
-            $body_html .= '<tr>';
-            $body_html .= '<td><strong>' . e($c['title']) . '</strong></td>';
-            $body_html .= '<td>' . e($c['level']) . '</td>';
-            $body_html .= '<td>' . (int)$c['duration_minutes'] . ' min</td>';
-            $body_html .= '<td>' . $sessTag . '</td>';
-            $body_html .= '<td><a href="/course-detail.php?slug=' . e($c['slug']) . '">' . $detail . '</a></td>';
-            $body_html .= '</tr>';
-        }
-        $body_html .= '</tbody></table>';
-        $body_html .= '</article>';
-    }
+$errBlock = '';
+if ($errors) {
+    $errBlock = '<div class="flash flash-error"><ul>';
+    foreach ($errors as $err) $errBlock .= '<li>' . e($err) . '</li>';
+    $errBlock .= '</ul></div>';
 }
 
 chdir(PROJECT_ROOT);
 require_once 'canada-gym-traditional/includes/template.inc.php';
 
-$body = new Template('skins/canada/dtml/course-list');
-$body->setContent('courses_block', $body_html);
-$body->setContent('h_calendar', $en ? 'Activity calendar 2025/26' : 'Calendario corsi A.A. 2025/26');
-$body->setContent('intro', $en
-    ? 'List of currently published activities, grouped by category. To book a session you must be a member with an active card and a valid medical certificate.'
-    : 'Elenco dei corsi attualmente pubblicati, raggruppati per categoria. Per prenotare una sessione devi essere iscritto, avere una tessera attiva e un certificato medico in corso di validità.');
-$body->setContent('note', $en
-    ? 'Booking closes when room capacity is reached.'
-    : 'Le iscrizioni alle sessioni si chiudono al raggiungimento della capienza della sala.');
+$body = new Template('skins/canada/dtml/admin-courses');
+$body->setContent('subnav', subnav_attivita('/admin/courses.php'));
+$body->setContent('rows', $rowsHtml);
+$body->setContent('cat_opts', $catOpts);
+$body->setContent('errors', $errBlock);
+$body->setContent('title_v', e($form['title']));
+$body->setContent('desc_v', e($form['description']));
 
 $main = new Template('skins/canada/dtml/main');
 $main->setContent('topbar', topbar_html());
-$main->setContent('title', ($en ? 'Activity calendar' : 'Calendario corsi') . ' | Canada');
+$main->setContent('title', 'Corsi | Backoffice');
 $main->setContent('nav', barra_utente());
 $main->setContent('flash', flash());
 $main->setContent('body', $body->get());
-$main->setContent('html_lang', current_lang());
-$main->setContent('brand_uni', t('brand.university'));
-$main->setContent('brand_center', t('brand.center'));
-$main->setContent('footer', footer_html());
+$main->setContent("html_lang", current_lang());
+$main->setContent("brand_uni", t("brand.university"));
+$main->setContent("brand_center", t("brand.center"));
+$main->setContent("footer", footer_html());
 $main->close();
