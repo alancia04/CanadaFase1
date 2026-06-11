@@ -1,3 +1,47 @@
-<div>
-    <p>corsi admin</p>
-</div>
+<[subnav]>
+
+<article class="panel">
+    <h2>Corsi</h2>
+    <[errors]>
+    <table class="list">
+        <thead><tr><th>titolo</th><th>categoria</th><th>livello</th><th>durata</th><th>stato</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Nuovo corso</h2>
+    <form method="post" action="/admin/courses.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="title">Titolo *</label>
+            <input type="text" id="title" name="title" value="<[title_v]>" maxlength="120" required>
+        </div>
+        <div class="form-row">
+            <label for="category_id">Categoria *</label>
+            <select id="category_id" name="category_id" required>
+                <option value="">-- scegli --</option>
+                <[cat_opts]>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="level">Livello</label>
+            <select id="level" name="level">
+                <option value="base">base</option>
+                <option value="intermedio">intermedio</option>
+                <option value="avanzato">avanzato</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="duration_minutes">Durata (minuti)</label>
+            <input type="number" id="duration_minutes" name="duration_minutes" value="60" min="15" max="240">
+        </div>
+        <div class="form-row">
+            <label for="description">Descrizione</label>
+            <textarea id="description" name="description" rows="3"><[desc_v]></textarea>
+        </div>
+        <div class="form-row">
+            <label><input type="checkbox" name="is_published" value="1" checked> Pubblicato</label>
+        </div>
+        <div class="form-row"><button class="btn" type="submit">Crea corso</button></div>
+    </form>
+</article>

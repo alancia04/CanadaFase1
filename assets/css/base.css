@@ -629,3 +629,15 @@ ol.steps li { margin-bottom: 6px; }
     letter-spacing: 0.04em;
     color: var(--c-muted);
 }
+
+/* tabelle dati (admin) */
+table.list {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--c-panel);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.92rem;
+}
+table.list th, table.list td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--c-border); }
+table.list th { background: #efeae0; font-weight: 600; }
+table.list tr:hover td { background: #faf6ee; }

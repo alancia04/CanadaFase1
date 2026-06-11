@@ -1,3 +1,26 @@
-<div>
-    <p>da fare</p>
-</div>
+<[subnav]>
+
+<article class="panel">
+    <h2>Categorie</h2>
+    <[errors]>
+    <table class="list">
+        <thead><tr><th>nome</th><th>slug</th><th>descrizione</th><th>corsi</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Nuova categoria</h2>
+    <form method="post" action="/admin/course-categories.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="name">Nome *</label>
+            <input type="text" id="name" name="name" value="<[name_v]>" maxlength="80" required>
+            <small>Lo slug viene generato automaticamente.</small>
+        </div>
+        <div class="form-row">
+            <label for="description">Descrizione</label>
+            <textarea id="description" name="description" rows="2"><[desc_v]></textarea>
+        </div>
+        <div class="form-row"><button class="btn" type="submit">Crea</button></div>
+    </form>
+</article>
