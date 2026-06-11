@@ -10,10 +10,7 @@ $pdo = db();
 $en  = current_lang() === 'en';
 
 $courses = $pdo->query("
-    SELECT c.id, c.title, c.slug, c.description, c.level, c.duration_minutes,
-           cat.name AS cat_name, cat.slug AS cat_slug,
-           (SELECT COUNT(*) FROM course_sessions cs
-             WHERE cs.course_id = c.id AND cs.status='scheduled' AND cs.starts_at >= NOW()) AS upcoming_sessions
+    SELECT c.id, c.title, c.slug, c.description, c.level, c.duration_minutes, cat.name AS cat_name, cat.slug AS cat_slug, (SELECT COUNT(*) FROM course_sessions cs WHERE cs.course_id = c.id AND cs.status='scheduled' AND cs.starts_at >= NOW()) AS upcoming_sessions
     FROM courses c
     JOIN course_categories cat ON cat.id = c.category_id
     WHERE c.is_published = 1
