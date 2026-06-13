@@ -1,5 +1,23 @@
-<!-- template admin-memberships -->
-<div>
-    <!-- layout e segnaposto -->
-    <p> admin-memberships</p>
-</div>
+<nav class="breadcrumb"><a href="/admin/index.php">Backoffice</a> <span class="sep">&raquo;</span> <span class="current">Tessere</span></nav>
+
+<article class="panel">
+    <h2>Tessere</h2>
+    <p class="muted small">Cerca un iscritto per nome, cognome, email o codice tessera. Per chi non ha una tessera attiva clicca "attiva tessera" (durata predefinita). Per annullare una tessera viene chiesta una conferma con modale.</p>
+
+    <form method="get" action="/admin/memberships.php" class="search-bar">
+        <input type="text" name="q" value="<[q_value]>" placeholder="Nome, cognome, email o codice (es. Mario Rossi, M-2026-0001)" aria-label="Cerca iscritto">
+        <button class="btn" type="submit">Cerca</button>
+        <a class="btn btn-outline" href="/admin/memberships.php">Reset</a>
+    </form>
+
+    <p class="muted small">Risultati: <strong><[result_count]></strong></p>
+
+    <table class="list">
+        <thead>
+            <tr><th>codice</th><th>iscritto</th><th>email</th><th>stato tessera</th><th>azione</th></tr>
+        </thead>
+        <tbody>
+            <[rows]>
+        </tbody>
+    </table>
+</article>

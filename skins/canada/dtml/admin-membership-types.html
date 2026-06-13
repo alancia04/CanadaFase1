@@ -1,5 +1,30 @@
-<!-- template admin-membership-types  -->
-<div>
-    <!-- layout e segnaposto -->
-    <p> admin-membership-types</p>
-</div>
+<nav class="breadcrumb"><a href="/admin/index.php">Backoffice</a> <span class="sep">&raquo;</span> <span class="current">Tipi tessera</span></nav>
+
+<article class="panel">
+    <h2>Tipi di tessera</h2>
+    <p class="muted small">Le tessere sono <strong>gratuite</strong>: i tipi servono solo a definire la durata del ciclo di iscrizione.</p>
+    <[errors]>
+    <table class="list">
+        <thead><tr><th>nome</th><th>descrizione</th><th>durata</th><th>tessere attive</th><th>stato</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Nuovo tipo</h2>
+    <form method="post" action="/admin/membership-types.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="name">Nome *</label>
+            <input type="text" id="name" name="name" value="<[name_v]>" maxlength="80" required>
+        </div>
+        <div class="form-row">
+            <label for="description">Descrizione</label>
+            <input type="text" id="description" name="description" value="<[desc_v]>" maxlength="255">
+        </div>
+        <div class="form-row">
+            <label for="duration_days">Durata (giorni) *</label>
+            <input type="number" id="duration_days" name="duration_days" value="<[duration_v]>" min="1" max="3650" required>
+        </div>
+        <div class="form-row"><button class="btn" type="submit">Crea tipo</button></div>
+    </form>
+</article>
