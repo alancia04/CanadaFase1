@@ -692,3 +692,47 @@ body.modal-open { overflow: hidden; }
     font-size: 0.92rem;
 }
 .search-bar input[type="text"]:focus { outline: 2px solid var(--c-burgundy); outline-offset: -2px; }
+
+/* ricerca iscritti nel form "Carica certificato" */
+.member-search { margin-bottom: 6px; }
+.member-select { padding: 2px; }
+.member-select option { padding: 6px 9px; }
+.member-select option:checked { background: #f0e6d6; }
+.member-search-empty { margin: 6px 0 0; }
+
+/* filtri rapidi (es. certificati admin) */
+.cert-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 10px 0 14px;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.88rem;
+}
+.cf-pill {
+    padding: 4px 12px;
+    background: #f4f2ed;
+    border: 1px solid var(--c-border);
+    color: var(--c-text);
+    text-decoration: none;
+}
+.cf-pill:hover { background: #fbf8f3; }
+.cf-pill.active {
+    background: var(--c-burgundy);
+    color: #fff;
+    border-color: var(--c-burgundy);
+}
+.cf-pill span { opacity: 0.7; margin-left: 4px; }
+
+/* status banner: verde/giallo/rosso */
+.status-banner {
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    border-left: 4px solid;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.93rem;
+}
+.status-banner.status-ok      { background: #e8f3e1; border-color: #5a8a3a; }
+.status-banner.status-warn    { background: #fff8d8; border-color: #c0a020; }
+.status-banner.status-pending { background: #e6eef7; border-color: #4a6a90; color: #1e3a5f; }
+.status-banner.status-error   { background: #fbe5e3; border-color: #c83e3e; color: #6e1414; }

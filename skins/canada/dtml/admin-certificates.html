@@ -1,3 +1,70 @@
-<div>
-    <p>da fre: admin-certificates</p>
-</div>
+<nav class="breadcrumb"><a href="/admin/index.php">Backoffice</a> <span class="sep">&raquo;</span> <span class="current">Certificati medici</span></nav>
+
+<article class="panel">
+    <h2>Certificati</h2>
+    <p class="muted small">Quando un utente carica il proprio certificato dall'area personale, finisce qui in stato <strong>in attesa</strong>. Lo staff lo controlla e lo approva o lo rifiuta con una motivazione. Solo i certificati <strong>approvati</strong> e non scaduti sbloccano le prenotazioni.</p>
+    <[filter_bar]>
+    <[errors]>
+    <table class="list">
+        <thead><tr><th>iscritto</th><th>emesso il</th><th>scade il</th><th>stato</th><th>file</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Carica certificato per un iscritto</h2>
+    <p class="muted small">PDF max 5 MB. Salvato in <code>assets/uploads/certificates/</code>. Quello che lo staff carica qui viene marcato direttamente come <strong>approvato</strong> (senza passare dalla coda di approvazione).</p>
+
+    <form method="post" action="/admin/certificates.php?action=create" enctype="multipart/form-data" class="auth-form">
+        <div class="form-row">
+            <label for="member_search">Iscritto *</label>
+            <input type="search" id="member_search" class="member-search" placeholder="Cerca per nome, cognome o codice tessera..." autocomplete="off">
+            <select id="member_id" name="member_id" required size="7" class="member-select">
+                <option value="">-- scegli un iscritto --</option>
+                <[member_opts]>
+            </select>
+            <p class="member-search-empty muted small" hidden>Nessun iscritto corrisponde alla ricerca.</p>
+        </div>
+        <div class="form-row">
+            <label for="issued_at">Emesso il *</label>
+            <input type="date" id="issued_at" name="issued_at" required>
+        </div>
+        <div class="form-row">
+            <label for="expires_at">Scade il *</label>
+            <input type="date" id="expires_at" name="expires_at" required>
+        </div>
+        <div class="form-row">
+            <label for="file">File PDF</label>
+            <input type="file" id="file" name="file" accept="application/pdf">
+        </div>
+        <div class="form-row">
+            <label for="notes">Note</label>
+            <input type="text" id="notes" name="notes" maxlength="255">
+        </div>
+        <div class="form-row"><button class="btn" type="submit">Salva certificato</button></div>
+    </form>
+</article>
+
+<script>
+(function () {
+    var search = document.getElementById('member_search');
+    var select = document.getElementById('member_id');
+    if (!search || !select) { return; }
+    var empty = document.querySelector('.member-search-empty');
+    var opts  = Array.prototype.slice.call(select.options);
+    function filtra() {
+        var q = search.value.trim().toLowerCase();
+        var visibili = 0;
+        for (var i = 0; i < opts.length; i++) {
+            var opt = opts[i];
+            if (opt.value === '') { opt.hidden = (q !== ''); continue; }
+            var match = opt.textContent.toLowerCase().indexOf(q) !== -1;
+            opt.hidden = !match;
+            if (match) { visibili++; }
+            else if (opt.selected) { opt.selected = false; select.value = ''; }
+        }
+        if (empty) { empty.hidden = !(q !== '' && visibili === 0); }
+    }
+    search.addEventListener('input', filtra);
+})();
+</script>

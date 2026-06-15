@@ -1,4 +1,31 @@
-<div>
-    <!-- da fare: layout e segnaposto -->
-    <p>da fare: my-certificate</p>
-</div>
+<nav class="breadcrumb"><a href="/dashboard.php"><[bc_area]></a> <span class="sep">&raquo;</span> <span class="current"><[bc_curr]></span></nav>
+
+<[banner]>
+
+<article class="panel">
+    <h2><[h_current]></h2>
+    <[current_info]>
+</article>
+
+<article class="panel">
+    <h2><[h_upload]></h2>
+    <p class="muted small"><[upload_help]></p>
+
+    <[errors]>
+
+    <form method="post" action="/my-certificate.php" enctype="multipart/form-data" class="auth-form">
+        <div class="form-row">
+            <label for="issued_at"><[l_issued]> *</label>
+            <input type="date" id="issued_at" name="issued_at" required>
+        </div>
+        <div class="form-row">
+            <label for="expires_at"><[l_expires]> *</label>
+            <input type="date" id="expires_at" name="expires_at" required>
+        </div>
+        <div class="form-row">
+            <label for="file"><[l_file]> *</label>
+            <input type="file" id="file" name="file" accept="application/pdf" required>
+        </div>
+        <div class="form-row"><button class="btn" type="submit"><[btn_upload]></button></div>
+    </form>
+</article>
