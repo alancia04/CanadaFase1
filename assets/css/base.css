@@ -736,3 +736,48 @@ body.modal-open { overflow: hidden; }
 .status-banner.status-warn    { background: #fff8d8; border-color: #c0a020; }
 .status-banner.status-pending { background: #e6eef7; border-color: #4a6a90; color: #1e3a5f; }
 .status-banner.status-error   { background: #fbe5e3; border-color: #c83e3e; color: #6e1414; }
+
+/* sub-nav per gruppi di pagine admin correlate */
+.admin-subnav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.88rem;
+    background: #fbf8f3;
+    border: 1px solid var(--c-border);
+    border-left: 4px solid var(--c-burgundy);
+    padding: 8px 14px;
+    margin-bottom: 16px;
+}
+.admin-subnav .back {
+    color: var(--c-muted);
+    text-decoration: none;
+}
+.admin-subnav .back:hover { color: var(--c-burgundy); }
+.admin-subnav .title {
+    font-family: Georgia, serif;
+    color: var(--c-burgundy);
+    font-weight: 600;
+    border-left: 1px solid var(--c-rule);
+    padding-left: 16px;
+}
+.admin-subnav .tabs {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.admin-subnav .tab {
+    padding: 4px 12px;
+    color: var(--c-text);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+.admin-subnav .tab:hover { color: var(--c-burgundy); }
+.admin-subnav .tab.active {
+    color: var(--c-burgundy);
+    font-weight: 600;
+    border-bottom-color: var(--c-burgundy);
+}

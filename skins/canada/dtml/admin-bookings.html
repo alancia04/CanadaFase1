@@ -1,5 +1,11 @@
-<!-- template admin-sessions - scaffold -->
-<div>
-    <!-- TODO: layout e segnaposto <[...]> -->
-    <p>TODO: admin-sessions</p>
-</div>
+<nav class="breadcrumb"><a href="/admin/index.php">Backoffice</a> <span class="sep">&raquo;</span> <span class="current">Prenotazioni</span></nav>
+
+<article class="panel">
+    <h2>Prenotazioni</h2>
+    <p class="muted small">Filtra: <a href="?filter=upcoming">in arrivo</a> &middot; <a href="?filter=past">passate</a> &middot; <a href="?filter=cancelled">cancellate</a> &middot; <a href="?filter=all">tutte</a> &middot; trovate: <strong><[total]></strong></p>
+
+    <table class="list">
+        <thead><tr><th>data</th><th>corso / sala</th><th>utente</th><th>stato</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>

@@ -1,3 +1,56 @@
-<div>
-    <p>TODO: admin-rooms</p>
-</div>
+<[subnav]>
+<article class="panel">
+    <h2>Sessioni programmate</h2>
+    <p class="muted small">Mostra le sessioni dagli ultimi 7 giorni in poi (max 100). Le occupazioni passate restano in lista per riferimento.</p>
+    <[errors]>
+    <table class="list">
+        <thead><tr><th>quando</th><th>corso</th><th>sala</th><th>posti</th><th>stato</th><th></th></tr></thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Nuova sessione</h2>
+    <p class="muted small">Il sistema controlla automaticamente la sovrapposizione delle sale.</p>
+
+    <form method="post" action="/admin/sessions.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="course_id">Corso *</label>
+            <select id="course_id" name="course_id" required>
+                <option value="">-- scegli --</option>
+                <[course_opts]>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="room_id">Sala *</label>
+            <select id="room_id" name="room_id" required>
+                <option value="">-- scegli --</option>
+                <[room_opts]>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="starts_at">Inizio *</label>
+            <input type="datetime-local" id="starts_at" name="starts_at" required>
+        </div>
+        <div class="form-row">
+            <label for="ends_at">Fine *</label>
+            <input type="datetime-local" id="ends_at" name="ends_at" required>
+        </div>
+        <div class="form-row">
+            <label for="capacity">Capienza sessione *</label>
+            <input type="number" id="capacity" name="capacity" min="1" max="200" required>
+            <small>Può essere minore della capienza della sala (es. per limitare i posti).</small>
+        </div>
+        <div class="form-row"><button class="btn" type="submit">Programma sessione</button></div>
+    </form>
+</article>
+
+<script>
+document.getElementById('room_id').addEventListener('change', function() {
+    var opt = this.options[this.selectedIndex];
+    var cap = opt.getAttribute('data-cap');
+    if (cap && !document.getElementById('capacity').value) {
+        document.getElementById('capacity').value = cap;
+    }
+});
+</script>
