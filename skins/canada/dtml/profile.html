@@ -1,3 +1,43 @@
-<div>
-    <p>TODO: profile</p>
-</div>
+<nav class="breadcrumb"><a href="/dashboard.php"><[bc_area]></a> <span class="sep">&raquo;</span> <span class="current"><[bc_profilo]></span></nav>
+
+<article class="panel">
+    <h2><[h_profilo]></h2>
+
+    <[errors]>
+
+    <p class="muted small"><[email_msg]> <strong><[email]></strong></p>
+
+    <form method="post" action="/profile.php" class="auth-form">
+        <fieldset>
+            <legend><[legend_personal]></legend>
+
+            <div class="form-row">
+                <label for="first_name"><[l_first_name]> *</label>
+                <input type="text" id="first_name" name="first_name" value="<[first_name]>" required>
+            </div>
+            <div class="form-row">
+                <label for="last_name"><[l_last_name]> *</label>
+                <input type="text" id="last_name" name="last_name" value="<[last_name]>" required>
+            </div>
+            <div class="form-row">
+                <label for="phone"><[l_phone]></label>
+                <input type="text" id="phone" name="phone" value="<[phone]>">
+            </div>
+            <div class="form-row">
+                <label for="birth_date"><[l_birth]></label>
+                <input type="date" id="birth_date" name="birth_date" value="<[birth_date]>">
+            </div>
+        </fieldset>
+
+        <div class="form-row">
+            <button class="btn" type="submit"><[btn_save]></button>
+            <a class="btn btn-outline" href="/dashboard.php"><[btn_cancel]></a>
+        </div>
+    </form>
+</article>
+
+<article class="panel">
+    <h2><[h_password]></h2>
+    <p><[pwd_help]></p>
+    <p><a class="btn btn-outline" href="/change-password.php"><[btn_change_password]></a></p>
+</article>

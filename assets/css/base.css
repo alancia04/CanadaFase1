@@ -781,3 +781,40 @@ body.modal-open { overflow: hidden; }
     font-weight: 600;
     border-bottom-color: var(--c-burgundy);
 }
+
+.account-card { padding: 22px 24px; }
+.account-head { display: flex; gap: 16px; align-items: center; margin-bottom: 14px; }
+.account-avatar {
+    width: 60px; height: 60px;
+    background: var(--c-burgundy);
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.account-head h2 { margin: 0; border-bottom: 0; padding-bottom: 0; display: block; }
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 14px 0 16px;
+}
+@media (max-width: 720px) { .account-grid { grid-template-columns: 1fr; } }
+.account-grid dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c-muted);
+    margin-bottom: 2px;
+}
+.account-grid dd { margin: 0; font-size: 1rem; font-weight: 600; }
+.account-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 0; }
+
+.account-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+@media (max-width: 800px) { .account-2col { grid-template-columns: 1fr; } }

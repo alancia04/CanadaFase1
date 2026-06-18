@@ -1,3 +1,43 @@
-<div>
-    <p>TODO: dashboard</p>
+<nav class="breadcrumb"><span class="current"><[bc]></span></nav>
+
+<article class="panel account-card">
+    <div class="account-head">
+        <div class="account-avatar"><[initials]></div>
+        <div>
+            <h2><[user_name]></h2>
+            <p class="muted small"><[user_email]></p>
+        </div>
+    </div>
+
+    <dl class="account-grid">
+        <div>
+            <dt><[l_member_code]></dt>
+            <dd><[member_code]></dd>
+        </div>
+        <div>
+            <dt><[l_member_type]></dt>
+            <dd><[member_type]></dd>
+        </div>
+        <div>
+            <dt><[l_matricola]></dt>
+            <dd><[matricola]></dd>
+        </div>
+    </dl>
+
+    <p class="account-actions">
+        <a class="btn btn-outline" href="/profile.php"><[btn_edit_data]></a>
+        <a class="btn btn-outline" href="/change-password.php"><[btn_change_password]></a>
+    </p>
+</article>
+
+<div class="account-2col">
+    <article class="panel">
+        <h2><[h_tessera]></h2>
+        <[membership_block]>
+    </article>
+
+    <article class="panel">
+        <h2><[h_cert]></h2>
+        <[cert_block]>
+    </article>
 </div>
