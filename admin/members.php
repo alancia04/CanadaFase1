@@ -70,6 +70,7 @@ $members = $pdo->query("
            u.email, u.first_name, u.last_name, u.id AS user_id
     FROM members m
     JOIN users u ON u.id = m.user_id
+    WHERE LOWER(CONCAT(u.first_name, ' ', u.last_name)) LIKE LOWER(:q)
     ORDER BY m.id DESC
 ")->fetchAll();
 
