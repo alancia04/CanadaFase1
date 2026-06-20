@@ -818,3 +818,74 @@ body.modal-open { overflow: hidden; }
     gap: 18px;
 }
 @media (max-width: 800px) { .account-2col { grid-template-columns: 1fr; } }
+
+
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.section-card {
+    background: var(--c-panel);
+    border: 1px solid var(--c-border);
+    border-left: 4px solid var(--c-burgundy);
+    padding: 14px 16px 12px;
+    transition: border-left-width 0.15s ease, background 0.15s ease;
+}
+.section-card:hover { border-left-width: 8px; background: #fbf8f3; }
+.section-card h3 {
+    margin: 0 0 8px;
+    font-family: Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--c-burgundy);
+    text-transform: none;
+    letter-spacing: 0;
+    padding-bottom: 6px;
+    border-bottom: 1px dotted var(--c-rule);
+}
+.section-card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+.section-card ul li::marker { color: var(--c-rule); }
+.section-card a { text-decoration: none; color: var(--c-text); }
+.section-card a:hover { color: var(--c-burgundy); text-decoration: underline; }
+
+/* stat card della dashboard admin: cliccabili, link al modulo pertinente */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+.stat-card {
+    display: block;
+    color: var(--c-text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.1s ease, border-color 0.1s ease, background 0.1s ease;
+    background: var(--c-panel);
+    border: 1px solid var(--c-border);
+    border-top: 3px solid var(--c-burgundy);
+    padding: 12px 14px;
+}
+.stat-card:hover { background: #fbf8f3; border-top-width: 5px; }
+.stat-card:focus { outline: 2px solid var(--c-burgundy); outline-offset: 2px; }
+.stat-card .stat-num {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--c-burgundy);
+    font-family: Georgia, serif;
+    line-height: 1.1;
+}
+.stat-card .stat-label {
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--c-muted);
+}

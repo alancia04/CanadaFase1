@@ -1,3 +1,35 @@
-<div>
-    <p>TODO: admin-home</p>
-</div>
+<nav class="breadcrumb"><span class="current"><[bc]></span></nav>
+
+<article class="panel">
+    <h2><[h_welcome]>, <[user_name]></h2>
+    <p class="muted small"><[l_groups]>: <[user_groups]>. <[intro]></p>
+</article>
+
+<section class="stat-grid">
+    <a class="stat-card" href="/admin/users.php">
+        <div class="stat-num"><[stat_users]></div>
+        <div class="stat-label"><[lbl_users]></div>
+    </a>
+    <a class="stat-card" href="/admin/memberships.php">
+        <div class="stat-num"><[stat_memberships]></div>
+        <div class="stat-label"><[lbl_memberships]></div>
+    </a>
+    <a class="stat-card" href="/admin/courses.php">
+        <div class="stat-num"><[stat_courses]></div>
+        <div class="stat-label"><[lbl_courses]></div>
+    </a>
+    <a class="stat-card" href="/admin/sessions.php">
+        <div class="stat-num"><[stat_sessions_w]></div>
+        <div class="stat-label"><[lbl_slots]></div>
+    </a>
+    <a class="stat-card" href="/admin/bookings.php">
+        <div class="stat-num"><[stat_bookings_w]></div>
+        <div class="stat-label"><[lbl_bookings]></div>
+    </a>
+    <a class="stat-card" href="/admin/certificates.php?filter=pending">
+        <div class="stat-num"><[stat_pending_certs]></div>
+        <div class="stat-label"><[lbl_pending_certs]></div>
+    </a>
+</section>
+
+<[sections]>

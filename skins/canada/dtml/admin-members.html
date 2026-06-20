@@ -1,3 +1,50 @@
-<div>
-    <p>TODO: admin-members</p>
-</div>
+<nav class="breadcrumb"><a href="/admin/index.php">Backoffice</a> <span class="sep">&raquo;</span> <span class="current">Iscritti palestra</span></nav>
+
+<article class="panel">
+    <h2>Iscritti</h2>
+    <p class="muted small">Totale iscritti: <strong><[total_count]></strong> &middot; Utenti senza iscrizione: <[candidates_count]></p>
+
+    <[errors]>
+
+    <table class="list">
+        <thead>
+            <tr><th>codice</th><th>nome</th><th>email</th><th>tipo</th><th>matricola</th><th>iscritto il</th><th></th></tr>
+        </thead>
+        <tbody><[rows]></tbody>
+    </table>
+</article>
+
+<article class="panel">
+    <h2>Aggiungi iscritto</h2>
+    <p class="small muted">Crea l'anagrafica palestra per un utente già registrato. Il codice tessera è generato in automatico.</p>
+
+    <form method="post" action="/admin/members.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="user_id">Utente *</label>
+            <select id="user_id" name="user_id" required>
+                <option value="">-- scegli --</option>
+                <[user_opts]>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>Tipo affiliazione *</label>
+            <span class="radio-group">
+                <label><input type="radio" name="member_type" value="studente" checked> studente</label>
+                <label><input type="radio" name="member_type" value="docente"> docente</label>
+                <label><input type="radio" name="member_type" value="personale"> personale</label>
+            </span>
+        </div>
+        <div class="form-row">
+            <label for="matricola">Matricola</label>
+            <input type="text" id="matricola" name="matricola" value="<[matricola_v]>" pattern="[A-Za-z0-9]{4,20}">
+            <small>Obbligatoria per gli studenti.</small>
+        </div>
+        <div class="form-row">
+            <label for="notes">Note</label>
+            <textarea id="notes" name="notes" rows="2"><[notes_v]></textarea>
+        </div>
+        <div class="form-row">
+            <button class="btn" type="submit">Aggiungi iscritto</button>
+        </div>
+    </form>
+</article>

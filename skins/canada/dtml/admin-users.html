@@ -1,3 +1,62 @@
-<div>
-    <p>TODO: admin-users</p>
-</div>
+<[subnav]>
+
+<section>
+    <h1>Utenti</h1>
+
+    <[errors]>
+
+    <h2>Lista</h2>
+
+    <form method="get" action="/admin/users.php" class="search-bar">
+        <input type="text" name="q" value="<[q_value]>" placeholder="Cerca per nome, cognome o email" aria-label="Cerca utente">
+        <button class="btn" type="submit">Cerca</button>
+        <a class="btn btn-outline" href="/admin/users.php">Reset</a>
+    </form>
+    <p class="muted small">Risultati: <strong><[result_count]></strong></p>
+
+    <table class="list">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>email</th>
+                <th>nome</th>
+                <th>gruppi</th>
+                <th>attivo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <[rows]>
+        </tbody>
+    </table>
+
+    <h2>Nuovo utente</h2>
+    <form method="post" action="/admin/users.php?action=create" class="auth-form">
+        <div class="form-row">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" value="<[email_v]>" required>
+        </div>
+        <div class="form-row">
+            <label for="first_name">Nome *</label>
+            <input type="text" id="first_name" name="first_name" value="<[firstname_v]>" required>
+        </div>
+        <div class="form-row">
+            <label for="last_name">Cognome *</label>
+            <input type="text" id="last_name" name="last_name" value="<[lastname_v]>" required>
+        </div>
+        <div class="form-row">
+            <label for="password">Password * (min 8)</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-row">
+            <label for="group_id">Gruppo iniziale *</label>
+            <select id="group_id" name="group_id" required>
+                <option value="">-- scegli --</option>
+                <[group_opts]>
+            </select>
+        </div>
+        <div class="form-row">
+            <button class="btn" type="submit">Crea utente</button>
+        </div>
+    </form>
+</section>
