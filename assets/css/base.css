@@ -889,3 +889,30 @@ body.modal-open { overflow: hidden; }
     letter-spacing: 0.06em;
     color: var(--c-muted);
 }
+
+.list tr.row-active td { background: #fbf8f3; border-left: 3px solid var(--c-burgundy); }
+.list tr.row-active td:first-child { padding-left: 9px; }
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 2px solid var(--c-burgundy);
+    margin-bottom: 18px;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.88rem;
+}
+.admin-tabs a {
+    padding: 7px 14px;
+    color: var(--c-muted);
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-right: 2px;
+}
+.admin-tabs a:hover { color: var(--c-text); background: #efeae0; }
+.admin-tabs a.active {
+    background: var(--c-burgundy);
+    color: #fff;
+    font-weight: 600;
+}

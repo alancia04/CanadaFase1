@@ -12,7 +12,6 @@ $pdo = db();
 $gid = (int)($_GET['id'] ?? 0);
 $q   = trim($_GET['q'] ?? '');
 
-// lista gruppi
 $groups = $pdo->query("
     SELECT g.id, g.name, g.description, COUNT(DISTINCT uhg.users_id) AS user_count
     FROM `groups` g
@@ -50,7 +49,8 @@ if ($gid > 0) {
         $params = [':gid' => $gid];
         if ($q !== '') {
             $like = '%' . $q . '%';
-            $sql .= " AND (u.email LIKE :q1 OR u.first_name LIKE :q2 OR u.last_name LIKE :q3 OR CONCAT(u.first_name, ' ', u.last_name) LIKE :q4)";
+            $sql .= " AND (u.email LIKE :q1 OR u.first_name LIKE :q2 OR u.last_name LIKE :q3
+                       OR CONCAT(u.first_name, ' ', u.last_name) LIKE :q4)";
             $params[':q1'] = $like; $params[':q2'] = $like; $params[':q3'] = $like; $params[':q4'] = $like;
         }
         $sql .= " ORDER BY u.last_name, u.first_name LIMIT 300";
@@ -68,7 +68,8 @@ if ($gid > 0) {
             $userRows .= '</tr>';
         }
         if (!$usersOfGroup) {
-            $userRows = '<tr><td colspan="4" class="muted">Nessun utente in questo gruppo' . ($q !== '' ? ' che corrisponde a "' . e($q) . '".' : '.') . '</td></tr>';
+            $userRows = '<tr><td colspan="4" class="muted">Nessun utente in questo gruppo'
+                      . ($q !== '' ? ' che corrisponde a "' . e($q) . '".' : '.') . '</td></tr>';
         }
 
         $detailHtml = '<article class="panel">'
