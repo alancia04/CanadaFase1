@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $body = new Template('skins/canada/dtml/change-password');
 

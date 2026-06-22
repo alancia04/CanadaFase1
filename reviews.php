@@ -113,7 +113,7 @@ if ($err !== '') $alertHtml = '<div class="alert alert-error">' . e($err) . '</d
 if ($ok  !== '') $alertHtml = '<div class="alert alert-success">' . e($ok) . '</div>';
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $body = new Template('skins/canada/dtml/reviews-list');
 $body->setContent('h_title',   $en ? 'Reviews' : 'Recensioni');

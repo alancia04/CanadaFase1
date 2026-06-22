@@ -79,7 +79,7 @@ if (!$history) {
 }
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $body = new Template('skins/canada/dtml/my-membership');
 $body->setContent('current_block', $current_block);

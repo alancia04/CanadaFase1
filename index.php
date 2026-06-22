@@ -177,7 +177,7 @@ if ($isLogged) {
     ];
 
     chdir(PROJECT_ROOT);
-    require_once 'canada-gym-traditional/includes/template.inc.php';
+    require_once PROJECT_ROOT . '/includes/template.inc.php';
 
     $main = new Template('skins/canada/dtml/main');
     $body = new Template('skins/canada/dtml/home-logged');
@@ -303,7 +303,7 @@ $labels = $en ? [
 ];
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $main = new Template('skins/canada/dtml/main');
 $body = new Template('skins/canada/dtml/home');

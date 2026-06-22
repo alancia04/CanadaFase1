@@ -66,7 +66,7 @@ $errBlock = '';
 if ($errors) { $errBlock = '<div class="flash flash-error"><ul>'; foreach ($errors as $err) $errBlock .= '<li>' . e($err) . '</li>'; $errBlock .= '</ul></div>'; }
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $body = new Template('skins/canada/dtml/admin-membership-types');
 $body->setContent('rows', $rowsHtml);

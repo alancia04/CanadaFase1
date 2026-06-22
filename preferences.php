@@ -53,7 +53,7 @@ $body_html .= '<div class="form-row"><button class="btn" type="submit">Salva</bu
 $body_html .= '</form></article>';
 
 chdir(PROJECT_ROOT);
-require_once 'canada-gym-traditional/includes/template.inc.php';
+require_once PROJECT_ROOT . '/includes/template.inc.php';
 
 $body = new Template('skins/canada/dtml/preferences');
 $body->setContent('content', $body_html);
