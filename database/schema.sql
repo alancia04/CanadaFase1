@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS canada_gym_traditional
+CREATE DATABASE IF NOT EXISTS canadafase1
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-USE canada_gym_traditional;
+USE canandafase1;
 
 SET FOREIGN_KEY_CHECKS = 0;
 SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';

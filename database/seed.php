@@ -10,7 +10,7 @@ $adminExists = (int)$pdo->query("SELECT COUNT(*) FROM users WHERE email='admin@c
 $groupsCount = (int)$pdo->query("SELECT COUNT(*) FROM `groups`")->fetchColumn();
 if ($adminExists === 0 || $groupsCount < 4) {
     fwrite(STDERR, "ERRORE: seed.sql non risulta importato (admin mancante o meno di 4 gruppi).\n");
-    fwrite(STDERR, "Esegui prima: mysql -u root -p canada_gym_traditional < database/seed.sql\n");
+    fwrite(STDERR, "Esegui prima: mysql -u root -p canadafase1 < database/seed.sql\n");
     exit(1);
 }
 

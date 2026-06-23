@@ -3,9 +3,9 @@
 
 define('DB_HOST', '127.0.0.1');
 define('DB_PORT', 3306);
-define('DB_NAME', 'canada_gym_traditional');
+define('DB_NAME', 'canadafase1');
 define('DB_USER', 'root');
-define('DB_PASS', 'canada123');
+define('DB_PASS', '');
 
 // radice progetto (serve a chdir + require_once)
 define('PROJECT_ROOT', dirname(__DIR__));
